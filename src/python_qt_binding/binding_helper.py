@@ -38,6 +38,7 @@ except ImportError:
     import builtins
 import os
 import sys
+import traceback
 
 
 QT_BINDING = None
@@ -85,11 +86,13 @@ def _select_qt_binding(binding_name=None, binding_order=None):
             if binding_loader:
                 QT_BINDING_VERSION = binding_loader(required_modules, optional_modules)
                 QT_BINDING = binding_name
+                # provide QtWidgets module for forward compatibility with Qt5
+                QT_BINDING_MODULES['QtWidgets'] = QT_BINDING_MODULES['QtGui']
                 break
             else:
                 error_msgs.append("  Binding loader '_load_%s' not found." % binding_name)
         except ImportError as e:
-            error_msgs.append("  ImportError for '%s': %s" % (binding_name, e))
+            error_msgs.append("  ImportError for '%s': %s\n%s" % (binding_name, e, traceback.format_exc()))
 
     if not QT_BINDING:
         raise ImportError("Could not find Qt binding (looked for: %s):\n%s" % (', '.join(["'%s'" % b for b in binding_order]), '\n'.join(error_msgs)))
