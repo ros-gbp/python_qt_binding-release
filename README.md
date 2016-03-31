@@ -1,3 +1,26 @@
+## python_qt_binding (indigo) - 0.2.19-0
+
+The packages in the `python_qt_binding` repository were released into the `indigo` distro by running `/usr/bin/bloom-release -r indigo -t indigo python_qt_binding` on `Thu, 31 Mar 2016 22:07:25 -0000`
+
+The `python_qt_binding` package was released.
+
+Version of package(s) in repository `python_qt_binding`:
+
+- upstream repository: git://github.com/ros-visualization/python_qt_binding.git
+- release repository: https://github.com/ros-gbp/python_qt_binding-release.git
+- rosdistro version: `0.2.18-0`
+- old version: `0.2.18-0`
+- new version: `0.2.19-0`
+
+Versions of tools used:
+
+- bloom version: `0.5.21`
+- catkin_pkg version: `0.2.10`
+- rosdep version: `0.11.4`
+- rosdistro version: `0.4.4`
+- vcstools version: `0.1.38`
+
+
 ## python_qt_binding (jade) - 0.2.18-0
 
 The packages in the `python_qt_binding` repository were released into the `jade` distro by running `/usr/bin/bloom-release -r jade -t jade python_qt_binding` on `Fri, 18 Mar 2016 01:45:53 -0000`
