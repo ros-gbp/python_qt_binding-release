@@ -1,3 +1,26 @@
+## python_qt_binding (kinetic) - 0.3.1-0
+
+The packages in the `python_qt_binding` repository were released into the `kinetic` distro by running `/usr/bin/bloom-release -r kinetic -t kinetic python_qt_binding` on `Thu, 21 Apr 2016 21:39:08 -0000`
+
+The `python_qt_binding` package was released.
+
+Version of package(s) in repository `python_qt_binding`:
+
+- upstream repository: git://github.com/ros-visualization/python_qt_binding.git
+- release repository: https://github.com/ros-gbp/python_qt_binding-release.git
+- rosdistro version: `0.3.0-0`
+- old version: `0.3.0-0`
+- new version: `0.3.1-0`
+
+Versions of tools used:
+
+- bloom version: `0.5.21`
+- catkin_pkg version: `0.2.10`
+- rosdep version: `0.11.4`
+- rosdistro version: `0.4.7`
+- vcstools version: `0.1.38`
+
+
 ## python_qt_binding (kinetic) - 0.3.0-0
 
 The packages in the `python_qt_binding` repository were released into the `kinetic` distro by running `/usr/bin/bloom-release -r kinetic -t kinetic python_qt_binding` on `Fri, 01 Apr 2016 21:13:05 -0000`
