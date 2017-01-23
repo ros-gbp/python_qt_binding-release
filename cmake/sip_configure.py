@@ -25,6 +25,8 @@ class Configuration(sipconfig.Configuration):
             'qt_version': QtCore.QT_VERSION,
             'qt_winconfig': 'shared',
         }
+        if sys.platform == 'darwin':
+            pyqtconfig['qt_framework'] = 1
         sipconfig.Configuration.__init__(self, [pyqtconfig])
 
         macros = sipconfig._default_macros.copy()
@@ -115,6 +117,9 @@ for ldflag in ldflags.split('\\ '):
 
 # redirect location of generated library
 makefile._target = '"%s"' % os.path.join(output_dir, makefile._target)
+
+# Force c++11 for qt5
+makefile.extra_cxxflags.append('-std=c++11')
 
 # Generate the Makefile itself
 makefile.generate()
