@@ -1,3 +1,26 @@
+## python_qt_binding (lunar) - 0.3.2-1
+
+The packages in the `python_qt_binding` repository were released into the `lunar` distro by running `/usr/bin/bloom-release -r lunar -t lunar python_qt_binding` on `Wed, 15 Mar 2017 17:45:12 -0000`
+
+The `python_qt_binding` package was released.
+
+Version of package(s) in repository `python_qt_binding`:
+
+- upstream repository: git://github.com/ros-visualization/python_qt_binding.git
+- release repository: https://github.com/ros-gbp/python_qt_binding-release.git
+- rosdistro version: `0.3.2-0`
+- old version: `0.3.2-0`
+- new version: `0.3.2-1`
+
+Versions of tools used:
+
+- bloom version: `0.5.24`
+- catkin_pkg version: `0.3.1`
+- rosdep version: `0.11.5`
+- rosdistro version: `0.6.1`
+- vcstools version: `0.1.39`
+
+
 ## python_qt_binding (lunar) - 0.3.2-0
 
 The packages in the `python_qt_binding` repository were released into the `lunar` distro by running `/usr/bin/bloom-release -r lunar -t lunar python_qt_binding` on `Fri, 24 Feb 2017 17:08:37 -0000`
