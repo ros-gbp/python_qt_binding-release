@@ -10,9 +10,19 @@ find_package(PythonInterp "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}" REQU
 assert(PYTHON_EXECUTABLE)
 find_package(PythonLibs "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}" REQUIRED)
 
-find_program(SIP_EXECUTABLE sip)
+execute_process(
+  COMMAND ${PYTHON_EXECUTABLE} -c "import sipconfig; print(sipconfig.Configuration().sip_bin)"
+  OUTPUT_VARIABLE PYTHON_SIP_EXECUTABLE
+  ERROR_QUIET)
+
+if(PYTHON_SIP_EXECUTABLE)
+  string(STRIP ${PYTHON_SIP_EXECUTABLE} SIP_EXECUTABLE)
+else()
+  find_program(SIP_EXECUTABLE sip)
+endif()
+
 if(SIP_EXECUTABLE)
-  message(STATUS "SIP binding generator available.")
+  message(STATUS "SIP binding generator available at: ${SIP_EXECUTABLE}")
   set(sip_helper_FOUND TRUE)
 else()
   message(WARNING "SIP binding generator NOT available.")
@@ -200,9 +210,13 @@ function(build_sip_binding PROJECT_NAME SIP_FILE)
     set(SIP_BUILD_DIR ${sip_BINARY_DIR}/sip/${PROJECT_NAME})
 
     set(INCLUDE_DIRS ${${PROJECT_NAME}_INCLUDE_DIRS} ${PYTHON_INCLUDE_DIRS})
-    set(LIBRARIES ${${PROJECT_NAME}_LIBRARIES})
     set(LIBRARY_DIRS ${${PROJECT_NAME}_LIBRARY_DIRS})
     set(LDFLAGS_OTHER ${${PROJECT_NAME}_LDFLAGS_OTHER})
+
+    # SIP configure doesn't handle build configuration keywords
+    catkin_filter_libraries_for_build_configuration(LIBRARIES ${${PROJECT_NAME}_LIBRARIES})
+    # SIP configure doesn't handle CMake targets
+    catkin_replace_imported_library_targets(LIBRARIES ${LIBRARIES})
 
     add_custom_command(
         OUTPUT ${SIP_BUILD_DIR}/Makefile
@@ -216,9 +230,15 @@ function(build_sip_binding PROJECT_NAME SIP_FILE)
         file(MAKE_DIRECTORY ${sip_LIBRARY_DIR})
     endif()
 
+    if(WIN32)
+      set(MAKE_EXECUTABLE NMake.exe)
+    else()
+      set(MAKE_EXECUTABLE make)
+    endif()
+
     add_custom_command(
         OUTPUT ${sip_LIBRARY_DIR}/lib${PROJECT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}
-        COMMAND make
+        COMMAND ${MAKE_EXECUTABLE}
         DEPENDS ${SIP_BUILD_DIR}/Makefile
         WORKING_DIRECTORY ${SIP_BUILD_DIR}
         COMMENT "Compiling generated code for ${PROJECT_NAME} Python bindings..."
