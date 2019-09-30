@@ -26,7 +26,7 @@ class Configuration(sipconfig.Configuration):
             'qt_lib_dir': qtconfig['QT_INSTALL_LIBS'],
             'qt_threaded': 1,
             'qt_version': QtCore.QT_VERSION,
-            'qt_winconfig': 'shared',
+            'qt_winconfig': 'shared exceptions',
         }
         if sys.platform == 'darwin':
             pyqtconfig['qt_framework'] = 1
@@ -37,6 +37,33 @@ class Configuration(sipconfig.Configuration):
         macros['LIBDIR_QT'] = qtconfig['QT_INSTALL_LIBS']
         macros['MOC'] = 'moc-qt5'
         self.set_build_macros(macros)
+
+
+def get_sip_dir_flags(config):
+    """
+    Get the extra SIP flags needed by the imported qt module, and locate PyQt5 sip install files.
+
+    Note that this normally only includes those flags (-x and -t) that relate to SIP's versioning
+    system.
+    """
+    try:
+        sip_dir = config.pyqt_sip_dir
+        sip_flags = config.pyqt_sip_flags
+        return sip_dir, sip_flags
+    except AttributeError:
+        # sipconfig.Configuration does not have a pyqt_sip_dir or pyqt_sip_flags AttributeError
+        sip_flags = QtCore.PYQT_CONFIGURATION['sip_flags']
+
+        default_sip_dir = os.path.join(sipconfig._pkg_config['default_sip_dir'], 'PyQt5')
+        if os.path.exists(default_sip_dir):
+            return default_sip_dir, sip_flags
+
+        # Homebrew installs sip files here by default
+        default_sip_dir = os.path.join(sipconfig._pkg_config['default_sip_dir'], 'Qt5')
+        if os.path.exists(default_sip_dir):
+            return default_sip_dir, sip_flags
+        raise FileNotFoundError('The sip directory for PyQt5 could not be located. Please ensure' +
+                                ' that PyQt5 is installed')
 
 
 if len(sys.argv) != 8:
@@ -55,16 +82,7 @@ build_file = 'pyqtscripting.sbf'
 # Get the PyQt configuration information.
 config = Configuration()
 
-# Get the extra SIP flags needed by the imported qt module.  Note that
-# this normally only includes those flags (-x and -t) that relate to SIP's
-# versioning system.
-try:
-    sip_dir = config.pyqt_sip_dir
-    sip_flags = config.pyqt_sip_flags
-except AttributeError:
-    # sipconfig.Configuration does not have a pyqt_sip_dir or pyqt_sip_flags attribute
-    sip_dir = sipconfig._pkg_config['default_sip_dir'] + '/PyQt5'
-    sip_flags = QtCore.PYQT_CONFIGURATION['sip_flags']
+sip_dir, sip_flags = get_sip_dir_flags(config)
 
 try:
     os.makedirs(build_dir)
@@ -73,8 +91,14 @@ except OSError:
 
 # Run SIP to generate the code.  Note that we tell SIP where to find the qt
 # module's specification files using the -I flag.
+
+sip_bin = config.sip_bin
+# Without the .exe, this might actually be a directory in Windows
+if sys.platform == 'win32' and os.path.isdir(sip_bin):
+    sip_bin += '.exe'
+
 cmd = [
-    config.sip_bin,
+    sip_bin,
     '-c', build_dir,
     '-b', os.path.join(build_dir, build_file),
     '-I', sip_dir,
@@ -100,6 +124,8 @@ default_platform_lib_function = sipconfig.SIPModuleMakefile.platform_lib
 
 
 def custom_platform_lib_function(self, clib, framework=0):
+    if not clib or clib.isspace():
+        return None
     # Only add '-l' if a library doesn't already start with '-l' and is not an absolute path
     if os.path.isabs(clib) or clib.startswith('-l'):
         return clib
@@ -130,8 +156,23 @@ for ldflag in ldflags.split('\\ '):
 # redirect location of generated library
 makefile._target = '"%s"' % os.path.join(output_dir, makefile._target)
 
-# Force c++11 for qt5
-makefile.extra_cxxflags.append('-std=c++11')
+# Force c++14
+if sys.platform == 'win32':
+    makefile.extra_cxxflags.append('/std:c++14')
+    # The __cplusplus flag is not properly set on Windows for backwards
+    # compatibilty. This flag sets it correctly
+    makefile.CXXFLAGS.append('/Zc:__cplusplus')
+else:
+    makefile.extra_cxxflags.append('-std=c++14')
+
+# Finalise the Makefile, preparing it to be saved to disk
+makefile.finalise()
+
+# Replace Qt variables from libraries
+libs = makefile.LIBS.as_list()
+for i in range(len(libs)):
+    libs[i] = libs[i].replace('$$[QT_INSTALL_LIBS]', config.build_macros()['LIBDIR_QT'])
+makefile.LIBS.set(libs)
 
 # Generate the Makefile itself
 makefile.generate()
