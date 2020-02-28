@@ -2,6 +2,29 @@
 Changelog for package python_qt_binding
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.3.7 (2020-02-28)
+------------------
+* bump CMake minimum version to avoid CMP0048 warning (`#83 <https://github.com/ros-visualization/python_qt_binding/issues/83>`_)
+* check if Shiboken2Config.cmake defines a target instead of a variable, fixes `#69 <https://github.com/ros-visualization/python_qt_binding/issues/69>`_ (`#77 <https://github.com/ros-visualization/python_qt_binding/issues/77>`_)
+
+0.3.6 (2019-09-30)
+------------------
+* convert cmake targets to plain libraries (`#68 <https://github.com/ros-visualization/python_qt_binding/issues/68>`_)
+* add Python 3 dependency with condition (`#75 <https://github.com/ros-visualization/python_qt_binding/issues/75>`_)
+* if present, use the sipconfig suggested sip program (`#70 <https://github.com/ros-visualization/python_qt_binding/issues/70>`_)
+* check for Homebrew's PyQt5 install path (`#57 <https://github.com/ros-visualization/python_qt_binding/issues/57>`_)
+* modifying sip_configure (`#54 <https://github.com/ros-visualization/python_qt_binding/issues/54>`_)
+* replace Qt variable in generated Makefile (`#64 <https://github.com/ros-visualization/python_qt_binding/issues/64>`_)
+* fixing trivial accidental string concatenation (`#66 <https://github.com/ros-visualization/python_qt_binding/issues/66>`_)
+* Windows: handling build configuration keywords before passed to SIP (`#60 <https://github.com/ros-visualization/python_qt_binding/issues/60>`_)
+* cherry-pick windows port from crystal-devel (`#61 <https://github.com/ros-visualization/python_qt_binding/issues/61>`_)
+
+0.3.5 (2019-03-14)
+------------------
+* don't add -l prefix if it already exists (`#59 <https://github.com/ros-visualization/python_qt_binding/issues/59>`_)
+* autopep8 (`#51 <https://github.com/ros-visualization/python_qt_binding/issues/51>`_)
+* remove :: from shiboken include path (`#48 <https://github.com/ros-visualization/python_qt_binding/issues/48>`_)
+
 0.3.4 (2018-08-03)
 ------------------
 * add support for additional Qt5 modules (`#45 <https://github.com/ros-visualization/python_qt_binding/issues/45>`_)
