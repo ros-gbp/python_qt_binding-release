@@ -1,0 +1,13 @@
+Source: ros-kinetic-python-qt-binding
+Section: misc
+Priority: optional
+Maintainer: Dirk Thomas <dthomas@osrfoundation.org>
+Build-Depends: debhelper (>= 9.0.0), libpyside2-dev, libshiboken2-dev, pyqt5-dev, python-pyqt5, python-pyqt5.qtsvg, python-pyside2, python-sip-dev, qtbase5-dev, ros-kinetic-catkin, ros-kinetic-rosbuild, shiboken2
+Homepage: http://ros.org/wiki/python_qt_binding
+Standards-Version: 3.9.2
+
+Package: ros-kinetic-python-qt-binding
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libpyside2-dev, libshiboken2-dev, pyqt5-dev, python-pyqt5, python-pyqt5.qtsvg, python-pyside2, python-sip-dev, ros-kinetic-catkin, shiboken2
+Description: This stack provides Python bindings for Qt.
+ There are two providers: pyside and pyqt. PySide is released under the LGPL. PyQt is released under the GPL. Both the bindings and tools to build bindings are included from each available provider. For PySide, it is called &quot;Shiboken&quot;. For PyQt, this is called &quot;SIP&quot;. Also provided is adapter code to make the user's Python code independent of which binding provider was actually used which makes it very easy to switch between these.
