@@ -21,7 +21,7 @@ if(Shiboken2_FOUND)
   if(NOT ${Shiboken2_VERSION} VERSION_LESS "5.13")
     get_property(SHIBOKEN_INCLUDE_DIR TARGET Shiboken2::libshiboken PROPERTY INTERFACE_INCLUDE_DIRECTORIES)
     get_property(SHIBOKEN_LIBRARY TARGET Shiboken2::libshiboken PROPERTY LOCATION)
-    SET(SHIBOKEN_BINARY Shiboken2::shiboken2)
+    set(SHIBOKEN_BINARY Shiboken2::shiboken2)
   endif()
   message(STATUS "Using SHIBOKEN_INCLUDE_DIR: ${SHIBOKEN_INCLUDE_DIR}")
   message(STATUS "Using SHIBOKEN_LIBRARY: ${SHIBOKEN_LIBRARY}")
@@ -42,8 +42,16 @@ set(Python_ADDITIONAL_VERSIONS "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
 find_package(PythonLibs "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}")
 
 if(Shiboken2_FOUND AND PySide2_FOUND AND PYTHONLIBS_FOUND)
-  message(STATUS "Shiboken binding generator available.")
-  set(shiboken_helper_FOUND TRUE)
+  if(${CMAKE_VERSION} VERSION_LESS "3.14")
+    # the shiboken invocation needs CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES
+    # which is broken before CMake 3.14
+    # see https://gitlab.kitware.com/cmake/cmake/issues/18394
+    message(STATUS "Shiboken binding generator available but CMake version is older than 3.14.")
+    set(shiboken_helper_NOTFOUND TRUE)
+  else()
+    message(STATUS "Shiboken binding generator available.")
+    set(shiboken_helper_FOUND TRUE)
+  endif()
 else()
   message(STATUS "Shiboken binding generator NOT available.")
   set(shiboken_helper_NOTFOUND TRUE)
@@ -59,7 +67,8 @@ macro(_shiboken_generator_command VAR GLOBAL TYPESYSTEM INCLUDE_PATH BUILD_DIR)
   foreach(dir ${SHIBOKEN_HELPER_INCLUDE_DIRS})
     set(SHIBOKEN_HELPER_INCLUDE_DIRS_WITH_COLONS "${SHIBOKEN_HELPER_INCLUDE_DIRS_WITH_COLONS}:${dir}")
   endforeach()
-  set(${VAR} ${SHIBOKEN_BINARY} --generatorSet=shiboken --enable-pyside-extensions --include-paths=${INCLUDE_PATH}${SHIBOKEN_HELPER_INCLUDE_DIRS_WITH_COLONS} --typesystem-paths=${PYSIDE_TYPESYSTEMS} --output-directory=${BUILD_DIR} ${GLOBAL} ${TYPESYSTEM})
+  string(REPLACE ";" ":" INCLUDE_PATH_WITH_COLONS "${INCLUDE_PATH}")
+  set(${VAR} ${SHIBOKEN_BINARY} --generatorSet=shiboken --enable-pyside-extensions --include-paths=${INCLUDE_PATH_WITH_COLONS}${SHIBOKEN_HELPER_INCLUDE_DIRS_WITH_COLONS} --typesystem-paths=${PYSIDE_TYPESYSTEMS} --output-directory=${BUILD_DIR} ${GLOBAL} ${TYPESYSTEM})
 endmacro()
 
 
