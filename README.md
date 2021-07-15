@@ -1,3 +1,26 @@
+## python_qt_binding (melodic) - 0.4.4-1
+
+The packages in the `python_qt_binding` repository were released into the `melodic` distro by running `/home/osrf/.local/bin/bloom-release -r melodic -t melodic python_qt_binding` on `Thu, 15 Jul 2021 17:36:52 -0000`
+
+The `python_qt_binding` package was released.
+
+Version of package(s) in repository `python_qt_binding`:
+
+- upstream repository: https://github.com/ros-visualization/python_qt_binding.git
+- release repository: https://github.com/ros-gbp/python_qt_binding-release.git
+- rosdistro version: `0.4.3-1`
+- old version: `0.4.3-1`
+- new version: `0.4.4-1`
+
+Versions of tools used:
+
+- bloom version: `0.10.7`
+- catkin_pkg version: `0.4.23`
+- rosdep version: `0.20.0`
+- rosdistro version: `0.8.3`
+- vcstools version: `0.1.42`
+
+
 ## python_qt_binding (kinetic) - 0.3.8-1
 
 The packages in the `python_qt_binding` repository were released into the `kinetic` distro by running `/home/osrf/.local/bin/bloom-release -r kinetic -t kinetic --override-release-repository-push-url git@github.com:ros-gbp/python_qt_binding-release.git python_qt_binding` on `Tue, 13 Apr 2021 01:21:13 -0000`
