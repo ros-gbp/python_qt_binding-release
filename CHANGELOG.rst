@@ -2,10 +2,32 @@
 Changelog for package python_qt_binding
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-0.3.8 (2021-04-12)
+0.4.4 (2021-07-15)
 ------------------
-* Update maintainers (`#96 <https://github.com/ros-visualization/python_qt_binding/issues/96>`_) (`#97 <https://github.com/ros-visualization/python_qt_binding/issues/97>`_)
-* Contributors: Shane Loretz
+* add check for sip binding install directory on archlinux (`#95 <https://github.com/ros-visualization/python_qt_binding/issues/95>`_)
+* Update maintainers (`#96 <https://github.com/ros-visualization/python_qt_binding/issues/96>`_)
+* Contributors: Akash Patel, Shane Loretz
+
+0.4.3 (2020-06-11)
+------------------
+* fix linking with non framework builds of qt (e.g. from conda-forge) (`#84 <https://github.com/ros-visualization/python_qt_binding/issues/84>`_)
+
+0.4.2 (2020-05-28)
+------------------
+* pass ROS_BUILD_SHARED_LIBS to use visibility control properly (`#89 <https://github.com/ros-visualization/python_qt_binding/issues/89>`_)
+* allow a list of INCLUDE_PATH (`#92 <https://github.com/ros-visualization/python_qt_binding/issues/92>`_)
+* use magic $(MAKE) variable to suppress build warning (`#91 <https://github.com/ros-visualization/python_qt_binding/issues/91>`_)
+
+0.4.1 (2020-03-02)
+------------------
+* remove obsolete function used for backward compatibility (`#88 <https://github.com/ros-visualization/python_qt_binding/issues/88>`_)
+* disable Shiboken with CMake < 3.14 (`#87 <https://github.com/ros-visualization/python_qt_binding/issues/87>`_)
+* fix case of CMake function (`#86 <https://github.com/ros-visualization/python_qt_binding/issues/86>`_)
+
+0.4.0 (2020-02-28)
+------------------
+* use PySide2 and Shiboken2 targets for variables (`#79 <https://github.com/ros-visualization/python_qt_binding/issues/79>`_)
+* use QUIET and change warning into status msg to avoid stderr on Melodic (`#85 <https://github.com/ros-visualization/python_qt_binding/issues/85>`_)
 
 0.3.7 (2020-02-28)
 ------------------
