@@ -1,0 +1,182 @@
+ros-noetic-python-qt-binding (0.4.5-1focal) focal; urgency=high
+
+  * Use PyQt5 module path to find SIP bindings (#105 <https://github.com/ros-visualization/python_qt_binding/issues/105>)
+  * Contributors: Ben Wolsieffer
+
+ -- Claire Wang <clairewang@openrobotics.org>  Wed, 09 Apr 2025 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.4.4-1focal) focal; urgency=high
+
+  * add check for sip binding install directory on archlinux (#95 <https://github.com/ros-visualization/python_qt_binding/issues/95>)
+  * Update maintainers (#96 <https://github.com/ros-visualization/python_qt_binding/issues/96>)
+  * Contributors: Akash Patel, Shane Loretz
+
+ -- Claire Wang <clairewang@openrobotics.org>  Thu, 15 Jul 2021 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.4.3-1focal) focal; urgency=high
+
+  * fix linking with non framework builds of qt (e.g. from conda-forge) (#84 <https://github.com/ros-visualization/python_qt_binding/issues/84>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 11 Jun 2020 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.4.2-1focal) focal; urgency=high
+
+  * pass ROS_BUILD_SHARED_LIBS to use visibility control properly (#89 <https://github.com/ros-visualization/python_qt_binding/issues/89>)
+  * allow a list of INCLUDE_PATH (#92 <https://github.com/ros-visualization/python_qt_binding/issues/92>)
+  * use magic $(MAKE) variable to suppress build warning (#91 <https://github.com/ros-visualization/python_qt_binding/issues/91>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 28 May 2020 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.4.1-1focal) focal; urgency=high
+
+  * remove obsolete function used for backward compatibility (#88 <https://github.com/ros-visualization/python_qt_binding/issues/88>)
+  * disable Shiboken with CMake < 3.14 (#87 <https://github.com/ros-visualization/python_qt_binding/issues/87>)
+  * fix case of CMake function (#86 <https://github.com/ros-visualization/python_qt_binding/issues/86>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 02 Mar 2020 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.4.0-1focal) focal; urgency=high
+
+  * use PySide2 and Shiboken2 targets for variables (#79 <https://github.com/ros-visualization/python_qt_binding/issues/79>)
+  * use QUIET and change warning into status msg to avoid stderr on Melodic (#85 <https://github.com/ros-visualization/python_qt_binding/issues/85>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Fri, 28 Feb 2020 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.3.7-1focal) focal; urgency=high
+
+  * bump CMake minimum version to avoid CMP0048 warning (#83 <https://github.com/ros-visualization/python_qt_binding/issues/83>)
+  * check if Shiboken2Config.cmake defines a target instead of a variable, fixes #69 <https://github.com/ros-visualization/python_qt_binding/issues/69> (#77 <https://github.com/ros-visualization/python_qt_binding/issues/77>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Fri, 28 Feb 2020 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.3.6-1focal) focal; urgency=high
+
+  * convert cmake targets to plain libraries (#68 <https://github.com/ros-visualization/python_qt_binding/issues/68>)
+  * add Python 3 dependency with condition (#75 <https://github.com/ros-visualization/python_qt_binding/issues/75>)
+  * if present, use the sipconfig suggested sip program (#70 <https://github.com/ros-visualization/python_qt_binding/issues/70>)
+  * check for Homebrew's PyQt5 install path (#57 <https://github.com/ros-visualization/python_qt_binding/issues/57>)
+  * modifying sip_configure (#54 <https://github.com/ros-visualization/python_qt_binding/issues/54>)
+  * replace Qt variable in generated Makefile (#64 <https://github.com/ros-visualization/python_qt_binding/issues/64>)
+  * fixing trivial accidental string concatenation (#66 <https://github.com/ros-visualization/python_qt_binding/issues/66>)
+  * Windows: handling build configuration keywords before passed to SIP (#60 <https://github.com/ros-visualization/python_qt_binding/issues/60>)
+  * cherry-pick windows port from crystal-devel (#61 <https://github.com/ros-visualization/python_qt_binding/issues/61>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 30 Sep 2019 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.3.5-1focal) focal; urgency=high
+
+  * don't add -l prefix if it already exists (#59 <https://github.com/ros-visualization/python_qt_binding/issues/59>)
+  * autopep8 (#51 <https://github.com/ros-visualization/python_qt_binding/issues/51>)
+  * remove :: from shiboken include path (#48 <https://github.com/ros-visualization/python_qt_binding/issues/48>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 14 Mar 2019 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.3.4-1focal) focal; urgency=high
+
+  * add support for additional Qt5 modules (#45 <https://github.com/ros-visualization/python_qt_binding/issues/45>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Fri, 03 Aug 2018 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.3.3-1focal) focal; urgency=high
+
+  * Prefer qmake-qt5 over qmake when available (#43 <https://github.com/ros-visualization/python_qt_binding/issues/43>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 25 Oct 2017 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.3.2-1focal) focal; urgency=high
+
+  * Fix problems on OS X (#40 <https://github.com/ros-visualization/python_qt_binding/pull/40>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 23 Jan 2017 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.3.1-1focal) focal; urgency=high
+
+  * support for the Qt 5 modules QtWebEngine and QtWebKitWidgets (#37 <https://github.com/ros-visualization/python_qt_binding/issues/37>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 21 Apr 2016 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.3.0-1focal) focal; urgency=high
+
+  * switch to Qt5 (#30 <https://github.com/ros-visualization/python_qt_binding/issues/30>)
+  * print full stacktrace
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Fri, 01 Apr 2016 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.2.18-1focal) focal; urgency=high
+
+  * remove LGPL and GPL from licenses, all code is BSD (#27 <https://github.com/ros-visualization/python_qt_binding/issues/27>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 17 Mar 2016 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.2.17-1focal) focal; urgency=high
+
+  * change import order of builtins to work when the 'future' package is installed in Python 2 (#24 <https://github.com/ros-visualization/python_qt_binding/issues/24>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sat, 19 Sep 2015 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.2.16-1focal) focal; urgency=high
+
+  * use qmake with QT_SELECT since qmake-qt4 is not available on all platforms (#22 <https://github.com/ros-visualization/python_qt_binding/issues/22>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Mon, 04 May 2015 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.2.15-1focal) focal; urgency=high
+
+  * support PyQt4.11 and higher when built with configure-ng.py (#13 <https://github.com/ros-visualization/python_qt_binding/issues/13>)
+  * __builtin__ became builtins in Python 3 (#16 <https://github.com/ros-visualization/python_qt_binding/issues/16>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 23 Apr 2015 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.2.14-1focal) focal; urgency=high
+
+  * add Python_ADDITIONAL_VERSIONS and ask for specific version of PythonInterp
+  * fix finding specific version of PythonLibs with CMake 3 (#11 <https://github.com/ros-visualization/python_qt_binding/issues/11>)
+  * fix sip_helper to use python header dirs on OS X (#12 <https://github.com/ros-visualization/python_qt_binding/issues/12>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 10 Jul 2014 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.2.13-1focal) focal; urgency=high
+
+  * fix sip arguments when path contains spaces
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 07 May 2014 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.2.12-1focal) focal; urgency=high
+
+  * python 3 compatibility
+  * fix sip bindings when paths contain spaces (#9 <https://github.com/ros-visualization/python_qt_binding/issues/9>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 08 Jan 2014 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.2.11-1focal) focal; urgency=high
+
+  * allow overriding binding order
+  * allow to release python_qt_binding as a standalone package to PyPI (#5 <https://github.com/ros-visualization/python_qt_binding/issues/5>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Wed, 21 Aug 2013 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.2.10-1focal) focal; urgency=high
+
+  * refactor loadUi function to be documentable (#2 <https://github.com/ros-visualization/python_qt_binding/issues/2>)
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Thu, 06 Jun 2013 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.2.9-1focal) focal; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Fri, 19 Apr 2013 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.2.8-1focal) focal; urgency=high
+
+
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Sun, 13 Jan 2013 00:00:00 -0000
+
+ros-noetic-python-qt-binding (0.2.7-1focal) focal; urgency=high
+
+  * first public release for Groovy
+
+ -- Dirk Thomas <dthomas@osrfoundation.org>  Fri, 21 Dec 2012 00:00:00 -0000
+
+
